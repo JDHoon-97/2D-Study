@@ -415,16 +415,16 @@
       <HintPath>D:\6000.0.32f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:\Users\whekt\2D1\Library\PackageCache\com.unity.ext.nunit\net40\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>D:\GitHub\2D-Study\2D1\Library\PackageCache\com.unity.ext.nunit\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>C:\Users\whekt\2D1\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
+      <HintPath>D:\GitHub\2D-Study\2D1\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>C:\Users\whekt\2D1\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>D:\GitHub\2D-Study\2D1\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>C:\Users\whekt\2D1\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>D:\GitHub\2D-Study\2D1\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\6000.0.32f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>

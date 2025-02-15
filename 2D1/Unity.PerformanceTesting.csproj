@@ -434,7 +434,7 @@
       <HintPath>D:\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:\Users\whekt\2D1\Library\PackageCache\com.unity.ext.nunit\net40\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>D:\GitHub\2D-Study\2D1\Library\PackageCache\com.unity.ext.nunit\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\6000.0.32f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
