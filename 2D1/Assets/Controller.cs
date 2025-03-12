@@ -26,7 +26,6 @@ public class Controller : MonoBehaviour
         bool isMoving = false;
         bool isUp = false;
         bool isDown = false;
-        bool isDead = false;
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -65,13 +64,11 @@ public class Controller : MonoBehaviour
         //버튼 한번 누르면 계속 공격이 재생
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            _animator.SetTrigger("IsAttack");
-            _animator.SetTrigger("IsUpAttack");
-            _animator.SetTrigger("IsDownAttack");
+            _animator.SetTrigger("Attack");
         }
         
         //점프
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //추친력 생성
             if (_isJumping == false)
@@ -87,10 +84,10 @@ public class Controller : MonoBehaviour
         }
         
         //사망
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             _upperRenderer.enabled = false;
-            isDead = true;
+            _animator.SetTrigger("Dead");
         }
         
         //칼 공격
@@ -104,11 +101,11 @@ public class Controller : MonoBehaviour
         {
             _animator.SetTrigger("IsThrowBomb");
         }
-        _animator.SetBool("IsMoving", isMoving);
-        _animator.SetBool("IsUp", isUp);
-        _animator.SetBool("IsDown", isDown);
+        
         _animator.SetBool("IsJumping", _isJumping);
-        _animator.SetBool("IsDead", isDead);
+        _animator.SetBool("IsUp", isUp);
+        _animator.SetBool("IsMoving", isMoving);
+        _animator.SetBool("IsDown", isDown);
     }
 
     private void Jump()
