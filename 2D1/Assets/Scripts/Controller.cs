@@ -1,37 +1,28 @@
-using UnityEditor.Experimental.GraphView;
+using System;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    //생성자
-    //유니티의 MonoBehaviour는 생성자를 사용할 수 없다.
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _upperRenderer;
     [SerializeField] private SpriteRenderer _lowerRenderer;
 
-    private Transform _cachedTransform;
-    [SerializeField] private float _jumpPower = 1;
-    private float _currentJumpPower;
-
-    private bool _isJumping = false;
+    [SerializeField] private Rigidbody2D _rigidbody;
     
-    private void Start()
-    {
-        _cachedTransform = transform;
-    }
+    [SerializeField] private float _jumpPower = 10;
+    [SerializeField] private float _moveSpeed = 10;
+    
+    private bool _isJumping = false;
+
     private void Update()
     {
         bool isMoving = false;
         bool isUp = false;
         bool isDown = false;
-        
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Vector3 position = _cachedTransform.position;
-            position.x -= 1 * Time.deltaTime;
-            _cachedTransform.position = position;
+            _rigidbody.linearVelocityX = -_moveSpeed;
             
             isMoving = true;
             _upperRenderer.flipX = true;
@@ -40,9 +31,7 @@ public class Controller : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Vector3 position = _cachedTransform.position;
-            position.x += 1 * Time.deltaTime;
-            _cachedTransform.position = position;
+            _rigidbody.linearVelocityX = _moveSpeed;
 
             isMoving = true;
             _upperRenderer.flipX = false;
@@ -74,15 +63,10 @@ public class Controller : MonoBehaviour
             if (_isJumping == false)
             {
                 _isJumping = true;
-                _currentJumpPower = _jumpPower;
+                _rigidbody.AddForceY(_jumpPower, ForceMode2D.Impulse);
             }
         }
-        
-        if (_isJumping == true)
-        {
-            Jump();
-        }
-        
+
         //사망
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -108,22 +92,11 @@ public class Controller : MonoBehaviour
         _animator.SetBool("IsDown", isDown);
     }
 
-    private void Jump()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        //y 값 이동
-        Vector3 position = _cachedTransform.position;
-        position.y += _currentJumpPower * Time.deltaTime;
-        _cachedTransform.position = position;
-        
-        //추진력 감소
-        _currentJumpPower -= Time.deltaTime;
-        
-        //땅에 닿으면 _isJumping 비활성화, y 값을 0
-        if (_cachedTransform.position.y < 0)
+        if (other.gameObject.CompareTag("Ground"))
         {
             _isJumping = false;
-            position.y = 0;
-            _cachedTransform.position = position;
         }
     }
 }
