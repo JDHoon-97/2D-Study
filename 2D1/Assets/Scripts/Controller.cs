@@ -11,9 +11,13 @@ public class Controller : MonoBehaviour
     
     [SerializeField] private float _jumpPower = 10;
     [SerializeField] private float _moveSpeed = 10;
+
+    [SerializeField] private Knife _knife;
     
     private bool _isJumping = false;
 
+    public bool IsAttacking { get; set; }
+    public Animator Animator => _animator;
     private void Update()
     {
         bool isMoving = false;
@@ -53,7 +57,15 @@ public class Controller : MonoBehaviour
         //버튼 한번 누르면 계속 공격이 재생
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            _animator.SetTrigger("Attack");
+            if (IsAttacking == false)
+            {
+                IsAttacking = true;
+                
+                if (_knife.CanAttack)
+                    _knife.Attack();
+                else
+                    _animator.SetTrigger("Attack");  
+            }
         }
         
         //점프
@@ -72,12 +84,6 @@ public class Controller : MonoBehaviour
         {
             _upperRenderer.enabled = false;
             _animator.SetTrigger("Dead");
-        }
-        
-        //칼 공격
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            _animator.SetTrigger("IsKnifeAttack");
         }
         
         //수류탄 투척
