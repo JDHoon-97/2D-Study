@@ -17,8 +17,15 @@ public class AttackAnimation : StateMachineBehaviour
         {
             _enermyController = animator.GetComponent<EnermyController>();
         }
+
+        if (_controller != null)
+        {
+            _controller.IsAttacking = false;
+        }
         
-        _controller.IsAttacking = false;
-        _enermyController.IsEnermyAttacking = false;
+        if (_enermyController != null)
+        {
+            _enermyController.IsEnermyAttacking = false;
+        }
     }
 }
