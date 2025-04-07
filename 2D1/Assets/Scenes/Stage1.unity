@@ -177,7 +177,7 @@ Transform:
   m_Children:
   - {fileID: 1349193218}
   - {fileID: 1407044008}
-  - {fileID: 396377756}
+  - {fileID: 566964015}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &342901772
@@ -198,7 +198,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 342901774}
   _jumpPower: 3
   _moveSpeed: 1
-  _knife: {fileID: 396377754}
+  _knife: {fileID: 0}
 --- !u!212 &342901773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &342901775
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -327,88 +327,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.27971116, y: 0.36782667}
   m_EdgeRadius: 0
---- !u!1 &396377753
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 396377756}
-  - component: {fileID: 396377755}
-  - component: {fileID: 396377754}
-  m_Layer: 0
-  m_Name: Knife
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &396377754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 396377753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ecc329320a343c41b6cb94b81b5b107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _controller: {fileID: 342901772}
---- !u!58 &396377755
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 396377753}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.15, y: 0}
-  m_Radius: 0.15
---- !u!4 &396377756
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 396377753}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 342901771}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &493786093
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +388,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &493786096
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -765,6 +683,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &566964014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 566964015}
+  - component: {fileID: 566964017}
+  - component: {fileID: 566964016}
+  m_Layer: 0
+  m_Name: Knife
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &566964015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566964014}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 342901771}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566964016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566964014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecc329320a343c41b6cb94b81b5b107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 342901772}
+--- !u!58 &566964017
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566964014}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.15, y: 0}
+  m_Radius: 0.15
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,8 +974,47 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -10, y: -0.5}
-  - {x: 10, y: -0.5}
+  - {x: -8.020864, y: -0.44859385}
+  - {x: -6.3340545, y: -0.4534278}
+  - {x: -5.2821355, y: -0.45251197}
+  - {x: -4.2688656, y: -0.42482266}
+  - {x: -3.2323577, y: -0.40693098}
+  - {x: -2.4797065, y: -0.42147753}
+  - {x: -2.1375883, y: -0.31799492}
+  - {x: -1.8815528, y: -0.23310952}
+  - {x: -1.7106019, y: -0.25308743}
+  - {x: -1.5201654, y: -0.23405692}
+  - {x: -1.0732338, y: -0.24464318}
+  - {x: -0.92975026, y: -0.20823796}
+  - {x: -0.66711056, y: -0.10288149}
+  - {x: -0.2822374, y: -0.13273722}
+  - {x: 0.2370817, y: -0.16579764}
+  - {x: 0.3396672, y: -0.19557188}
+  - {x: 0.5877633, y: -0.32497406}
+  - {x: 0.7386645, y: -0.44690764}
+  - {x: 0.9558337, y: -0.45089635}
+  - {x: 1.0492204, y: -0.47999865}
+  - {x: 1.1306185, y: -0.5180229}
+  - {x: 1.1966381, y: -0.55245036}
+  - {x: 1.3247559, y: -0.60969186}
+  - {x: 1.5383227, y: -0.65377045}
+  - {x: 1.7206475, y: -0.67332524}
+  - {x: 1.6667656, y: -0.19978783}
+  - {x: 2.1723635, y: -0.26461896}
+  - {x: 2.8863685, y: -0.32420796}
+  - {x: 3.239464, y: -0.56623054}
+  - {x: 3.7156842, y: -0.6355111}
+  - {x: 4.220451, y: -0.70159465}
+  - {x: 4.693488, y: -0.6964696}
+  - {x: 5.3777876, y: -0.6720971}
+  - {x: 5.746096, y: -0.5781352}
+  - {x: 5.9597387, y: -0.4738524}
+  - {x: 6.161606, y: -0.50240743}
+  - {x: 6.3440113, y: -0.5294467}
+  - {x: 6.7358546, y: -0.5107006}
+  - {x: 7.2251697, y: -0.56357014}
+  - {x: 8.040031, y: -0.57600397}
+  - {x: 8.0435295, y: -0.57375586}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
