@@ -13,11 +13,6 @@ public class EnermyController : MonoBehaviour
     public Animator Animator => _animator;
     private void Update()
     {
-        bool isMoving = false;
-        bool isUp = false;
-        bool isDown = false;
-        
-        
         //버튼 한번 누르면 계속 공격이 재생
         if (Input.GetKeyDown(KeyCode.G))
         {
