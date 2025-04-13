@@ -5,7 +5,7 @@ public class EnermyController : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer Renderer;
     [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private Knife _knife;
+    [SerializeField] private EnermyKnife _enermyknife;
     
     private bool _isJumping = false;
 
@@ -20,8 +20,8 @@ public class EnermyController : MonoBehaviour
             {
                 IsEnermyAttacking = true;
                 
-                if (_knife.CanAttack)
-                    _knife.Attack();
+                if (_enermyknife.CanAttack)
+                    _enermyknife.Attack();
                 else
                     _animator.SetTrigger("EnermyAttack");  
             }

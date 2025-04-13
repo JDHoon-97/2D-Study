@@ -53,6 +53,7 @@
     <Compile Include="Assets\Scripts\AttackAnimation.cs" />
     <Compile Include="Assets\Scripts\Knife.cs" />
     <Compile Include="Assets\Scripts\Enermy.cs" />
+    <Compile Include="Assets\Scripts\EnermyKnife.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
