@@ -1,15 +1,21 @@
-using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Controller : BaseController
 {
     [SerializeField] private SpriteRenderer _upperRenderer;
-    [SerializeField] private SpriteRenderer _lowerRenderer;
+    [SerializeField] private Transform _transform;
     [SerializeField] private float _jumpPower = 10;
     [SerializeField] private float _moveSpeed = 10;
-    [SerializeField] private Knife _knife;
-    public bool IsAttacking { get; set; }
-
+    
+    [SerializeField] private Bullet _bullet;
+    [SerializeField] private Transform _bulletPoint;
+    private void Awake()
+    {
+        //최적화에 도움이 됨. 마샬링 -> 블로그
+        _transform = transform;
+    }
+    
     private void Update()
     {
         bool isMoving = false;
@@ -21,8 +27,9 @@ public class Controller : BaseController
             _rigidbody.linearVelocityX = -_moveSpeed;
             
             isMoving = true;
-            _upperRenderer.flipX = true;
-            _lowerRenderer.flipX = true;
+            
+            //블로그 과제 : 쿼터니언
+            _transform.rotation = Quaternion.Euler(0, -180, 0);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -30,8 +37,8 @@ public class Controller : BaseController
             _rigidbody.linearVelocityX = _moveSpeed;
 
             isMoving = true;
-            _upperRenderer.flipX = false;
-            _lowerRenderer.flipX = false;
+
+            _transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         
         // 위 방향키를 누르면 위쪽을 본다.
@@ -87,11 +94,20 @@ public class Controller : BaseController
         if (IsAttacking == false)
         {
             IsAttacking = true;
-                
+
             if (_knife.CanAttack)
                 _knife.Attack();
             else
-                _animator.SetTrigger("Attack");  
+                Shoot();
         }
+    }
+
+    private void Shoot()
+    {
+        _animator.SetTrigger("Attack");
+
+        Transform bullet = Instantiate(_bullet).transform;
+        bullet.position = _bulletPoint.position;
+        bullet.rotation = _transform.rotation;
     }
 }

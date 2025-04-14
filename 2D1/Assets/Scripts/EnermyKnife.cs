@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class EnermyKnife : BaseKnife
 {
-    [SerializeField] private EnermyController _enermyController;
-    
     private Player _player;
 
     public override bool CanAttack => _player != null;
@@ -25,7 +23,7 @@ public class EnermyKnife : BaseKnife
 
     public override void Attack()
     {
-        _enermyController.Animator.SetTrigger("EnermyAttack");
+        _controller.Animator.SetTrigger("IsKnifeAttack");
 
         if (_player)
         {

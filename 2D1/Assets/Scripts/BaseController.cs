@@ -3,11 +3,13 @@ using UnityEngine;
 
 public abstract class BaseController : MonoBehaviour
 {
-    [SerializeField] public Animator _animator;
-    [SerializeField] public Rigidbody2D _rigidbody;
-
+    [SerializeField] protected Animator _animator;
+    [SerializeField] protected Rigidbody2D _rigidbody;
+    [SerializeField] protected BaseKnife _knife;
+    
     public bool _isJumping = false;
 
+    public bool IsAttacking { get; set; }
     public Animator Animator => _animator;
 
     public virtual void OnCollisionEnter2D(Collision2D other)

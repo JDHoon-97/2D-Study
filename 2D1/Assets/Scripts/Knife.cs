@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Knife : BaseKnife
 {
-    [SerializeField] private Controller _controller;
-    
     private List <Enermy> _enemies = new List<Enermy>();
 
     public override bool CanAttack => _enemies.Count > 0;
