@@ -1,23 +1,15 @@
 using System;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+public class Controller : BaseController
 {
-    [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _upperRenderer;
     [SerializeField] private SpriteRenderer _lowerRenderer;
-
-    [SerializeField] private Rigidbody2D _rigidbody;
-    
     [SerializeField] private float _jumpPower = 10;
     [SerializeField] private float _moveSpeed = 10;
-
     [SerializeField] private Knife _knife;
-    
-    private bool _isJumping = false;
-
     public bool IsAttacking { get; set; }
-    public Animator Animator => _animator;
+
     private void Update()
     {
         bool isMoving = false;
@@ -57,15 +49,7 @@ public class Controller : MonoBehaviour
         //버튼 한번 누르면 계속 공격이 재생
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (IsAttacking == false)
-            {
-                IsAttacking = true;
-                
-                if (_knife.CanAttack)
-                    _knife.Attack();
-                else
-                    _animator.SetTrigger("Attack");  
-            }
+            Attacking();
         }
         
         //점프
@@ -98,11 +82,16 @@ public class Controller : MonoBehaviour
         _animator.SetBool("IsDown", isDown);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public override void Attacking()
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (IsAttacking == false)
         {
-            _isJumping = false;
+            IsAttacking = true;
+                
+            if (_knife.CanAttack)
+                _knife.Attack();
+            else
+                _animator.SetTrigger("Attack");  
         }
     }
 }

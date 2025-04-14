@@ -1,38 +1,30 @@
 using UnityEngine;
 
-public class EnermyController : MonoBehaviour
+public class EnermyController : BaseController
 {
-    [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer Renderer;
-    [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private EnermyKnife _enermyknife;
-    
-    private bool _isJumping = false;
+    [SerializeField] private EnermyKnife _enermyKnife;
 
     public bool IsEnermyAttacking { get; set; }
-    public Animator Animator => _animator;
     private void Update()
     {
         //버튼 한번 누르면 계속 공격이 재생
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if (IsEnermyAttacking == false)
-            {
-                IsEnermyAttacking = true;
-                
-                if (_enermyknife.CanAttack)
-                    _enermyknife.Attack();
-                else
-                    _animator.SetTrigger("EnermyAttack");  
-            }
+            Attacking();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public override void Attacking()
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (!IsEnermyAttacking)
         {
-            _isJumping = false;
+            IsEnermyAttacking = true;
+
+            if (_enermyKnife.CanAttack)
+                _enermyKnife.Attack();
+            else
+                _animator.SetTrigger("EnermyAttack");
         }
     }
 }

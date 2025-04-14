@@ -1,21 +1,11 @@
 using UnityEngine;
 
-public class Enermy : MonoBehaviour
+public class Enermy : Character
 {
-    [SerializeField] private int _hp = 3;
+    [SerializeField] private int _enermyhp = 3;
     
-    public void TakeDamage(int damage)
+    public void TakeEnermyDamage(int damage)
     {
-        _hp -= damage;
-        
-        if(_hp <= 0)
-        {
-            Dead();
-        }
-    }
-
-    private void Dead()
-    {
-        Destroy(gameObject);
+        base.TakeDamage(damage);
     }
 }

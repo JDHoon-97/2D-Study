@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-public class Knife : MonoBehaviour
+public class Knife : BaseKnife
 {
     [SerializeField] private Controller _controller;
     
     private List <Enermy> _enemies = new List<Enermy>();
 
-    public bool CanAttack => _enemies.Count > 0;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override bool CanAttack => _enemies.Count > 0;
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enermy"))
         {
@@ -17,7 +17,7 @@ public class Knife : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public override void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enermy"))
         {
@@ -25,13 +25,13 @@ public class Knife : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public override void Attack()
     {
         _controller.Animator.SetTrigger("IsKnifeAttack");
 
         for (int i = 0; i < _enemies.Count; i++)
         {
-            _enemies[i].TakeDamage(1);
+            _enemies[i].TakeEnermyDamage(1);
         }
     }
 }

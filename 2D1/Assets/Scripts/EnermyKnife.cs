@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class EnermyKnife : MonoBehaviour
+public class EnermyKnife : BaseKnife
 {
     [SerializeField] private EnermyController _enermyController;
     
     private Player _player;
 
-    public bool CanAttack => _player != null;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override bool CanAttack => _player != null;
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -15,7 +15,7 @@ public class EnermyKnife : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public override void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -23,7 +23,7 @@ public class EnermyKnife : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public override void Attack()
     {
         _enermyController.Animator.SetTrigger("EnermyAttack");
 

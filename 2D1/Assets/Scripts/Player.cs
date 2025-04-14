@@ -1,21 +1,11 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    [SerializeField] private int _hp = 10;
+    [SerializeField] private int _playerhp = 10;
     
     public void TakePlayerDamage(int damage)
     {
-        _hp -= damage;
-        
-        if(_hp <= 0)
-        {
-            Dead();
-        }
-    }
-
-    private void Dead()
-    {
-        Destroy(gameObject);
+        base.TakeDamage(damage);
     }
 }
