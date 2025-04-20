@@ -10,6 +10,10 @@ public class Controller : BaseController
     
     [SerializeField] private Bullet _bullet;
     [SerializeField] private Transform _bulletPoint;
+    private float distance = 1;
+    private int groundMask = 1;
+    public float angle;
+    public Vector2 perp;
     private void Awake()
     {
         //최적화에 도움이 됨. 마샬링 -> 블로그
@@ -21,9 +25,31 @@ public class Controller : BaseController
         bool isMoving = false;
         bool isUp = false;
         bool isDown = false;
+        bool isSlope = false;
+        
+        RaycastHit2D hit = Physics2D.Raycast(_transform.position, Vector2.down, distance, groundMask);
 
+        if (hit)
+        {
+            perp = Vector2.Perpendicular(hit.normal).normalized;
+            angle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if (angle != 0)
+            {
+                isSlope = true;
+            }
+
+            Debug.DrawLine(hit.point, hit.point + hit.normal, Color.blue);
+            Debug.DrawLine(hit.point, hit.point + perp, Color.red);
+
+        }
+        
+        
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            if(isSlope)
+                _rigidbody.linearVelocityX = perp.x * -_moveSpeed * -1f;
+            else
             _rigidbody.linearVelocityX = -_moveSpeed;
             
             isMoving = true;
@@ -34,11 +60,24 @@ public class Controller : BaseController
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            if(isSlope)
+                _rigidbody.linearVelocityX = perp.x * _moveSpeed * -1f;
+            else
             _rigidbody.linearVelocityX = _moveSpeed;
 
             isMoving = true;
 
             _transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        
+        if (isMoving == false)
+        {
+            _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            
+        }
+        else
+        {
+            _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         
         // 위 방향키를 누르면 위쪽을 본다.

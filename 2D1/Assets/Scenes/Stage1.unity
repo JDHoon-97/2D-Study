@@ -198,12 +198,16 @@ MonoBehaviour:
   _rigidbody: {fileID: 342901774}
   _knife: {fileID: 566964016}
   _isJumping: 0
+  isMoving: 0
   _upperRenderer: {fileID: 1349193219}
   _transform: {fileID: 0}
   _jumpPower: 3
   _moveSpeed: 1
   _bullet: {fileID: 7071513470000715135, guid: 876a63b89cd6a924f8e2e25f1d902811, type: 3}
   _bulletPoint: {fileID: 680436053}
+  angle: 0
+  perp: {x: 0, y: 0}
+  isSlope: 0
 --- !u!212 &342901773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -562,6 +566,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 493786095}
   _knife: {fileID: 1596586357}
   _isJumping: 0
+  isMoving: 0
   Renderer: {fileID: 493786097}
 --- !u!1 &519420028
 GameObject:
@@ -669,7 +674,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
