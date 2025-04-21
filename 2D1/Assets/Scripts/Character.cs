@@ -3,7 +3,9 @@ using UnityEngine.InputSystem.Processors;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private int _hp;
+    [SerializeField] public int _hp;
+    [SerializeField] protected Animator _animator;
+    [SerializeField] private SpriteRenderer _upperRenderer;
 
     public virtual void TakeDamage(int damage)
     {
@@ -17,6 +19,11 @@ public class Character : MonoBehaviour
 
     public virtual void Dead()
     {
-        Destroy(gameObject);
+        if (_hp < 0)
+        {
+            _upperRenderer.enabled = false;
+            _animator.SetTrigger("Dead");
+        }
+        //Destroy(gameObject);
     }
 }

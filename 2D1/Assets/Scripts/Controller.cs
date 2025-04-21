@@ -110,11 +110,11 @@ public class Controller : BaseController
         }
 
         //사망
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            _upperRenderer.enabled = false;
-            _animator.SetTrigger("Dead");
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    _upperRenderer.enabled = false;
+        //    _animator.SetTrigger("Dead");
+        //}
         
         //수류탄 투척
         if (Input.GetKeyDown(KeyCode.C))

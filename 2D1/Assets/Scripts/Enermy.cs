@@ -6,4 +6,13 @@ public class Enermy : Character
     {
         base.TakeDamage(damage);
     }
+    
+    public override void Dead()
+    {
+        if (_hp < 0)
+        {
+            _animator.SetTrigger("EnermyDead");
+        }
+        //Destroy(gameObject);
+    }
 }
