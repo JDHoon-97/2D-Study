@@ -4,24 +4,14 @@ public class EnermyController : BaseController
 {
     [SerializeField] private SpriteRenderer Renderer;
     
-    private void Update()
+    protected override void Update()
     {
-        bool enermyIsMoving = false;
+        base.Update();
         
         //버튼 한번 누르면 계속 공격이 재생
         if (Input.GetKeyDown(KeyCode.G))
         {
             Attacking();
-        }
-        
-        if (enermyIsMoving == false)
-        {
-            _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-            
-        }
-        else
-        {
-            _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 

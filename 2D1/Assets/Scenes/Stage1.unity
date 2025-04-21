@@ -172,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 342901768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.735, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -197,16 +197,13 @@ MonoBehaviour:
   _animator: {fileID: 342901770}
   _rigidbody: {fileID: 342901774}
   _knife: {fileID: 566964016}
-  _isJumping: 0
-  isMoving: 0
-  _upperRenderer: {fileID: 1349193219}
   _transform: {fileID: 0}
+  _isJumping: 0
+  _upperRenderer: {fileID: 1349193219}
   _jumpPower: 3
   _moveSpeed: 1
   _bullet: {fileID: 7071513470000715135, guid: 876a63b89cd6a924f8e2e25f1d902811, type: 3}
   _bulletPoint: {fileID: 680436053}
-  angle: 0
-  perp: {x: 0, y: 0}
 --- !u!212 &342901773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -546,7 +543,7 @@ Transform:
   m_GameObject: {fileID: 493786093}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.253, y: 0, z: 0}
+  m_LocalPosition: {x: 0.349, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -568,8 +565,8 @@ MonoBehaviour:
   _animator: {fileID: 493786099}
   _rigidbody: {fileID: 493786095}
   _knife: {fileID: 1596586357}
+  _transform: {fileID: 0}
   _isJumping: 0
-  isMoving: 0
   Renderer: {fileID: 493786097}
 --- !u!1 &519420028
 GameObject:

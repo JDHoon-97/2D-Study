@@ -29,7 +29,7 @@ public class Knife : BaseKnife
 
         for (int i = 0; i < _enemies.Count; i++)
         {
-            _enemies[i].TakeEnermyDamage(1);
+            _enemies[i].TakeDamage(1);
         }
     }
 }
