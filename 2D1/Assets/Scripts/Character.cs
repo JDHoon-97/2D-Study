@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
 
     public virtual void Dead()
     {
-        if (_hp < 0)
+        if (_hp == 0)
         {
             _upperRenderer.enabled = false;
             _animator.SetTrigger("Dead");

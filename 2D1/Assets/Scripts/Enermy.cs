@@ -9,7 +9,7 @@ public class Enermy : Character
     
     public override void Dead()
     {
-        if (_hp < 0)
+        if (_hp == 0)
         {
             _animator.SetTrigger("EnermyDead");
         }
