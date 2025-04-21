@@ -207,7 +207,6 @@ MonoBehaviour:
   _bulletPoint: {fileID: 680436053}
   angle: 0
   perp: {x: 0, y: 0}
-  isSlope: 0
 --- !u!212 &342901773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -349,6 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 3
+  _animator: {fileID: 342901770}
+  _upperRenderer: {fileID: 1349193219}
 --- !u!1 &493786093
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 3
+  _animator: {fileID: 493786099}
+  _upperRenderer: {fileID: 0}
 --- !u!50 &493786095
 Rigidbody2D:
   serializedVersion: 5
@@ -674,7 +677,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
