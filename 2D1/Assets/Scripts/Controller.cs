@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class Controller : BaseController
@@ -8,6 +11,8 @@ public class Controller : BaseController
     
     [SerializeField] private Bullet _bullet;
     [SerializeField] private Transform _bulletPoint;
+
+    private List<bool> _bulletQueue = new List<bool>();
     
     protected override void Update()
     {
@@ -31,13 +36,18 @@ public class Controller : BaseController
         // 위 방향키를 누르면 위쪽을 본다.
         if (Input.GetKey(KeyCode.UpArrow))
         {
+            //과제 : Up > UpAttack 전환시 부드럽게 애니메이션 수정하기 ( Up 클립 수정 )
             isUp = true;
+            
+            //TODO : 위치, 회전 수정
         }
         
         // 아래 방향키를 누르면 아래를 본다.
         if (Input.GetKey(KeyCode.DownArrow))
         {
             isDown = true;
+            
+            //TODO : 위치, 회전 수정
         }
         
         //버튼 한번 누르면 계속 공격이 재생
@@ -56,13 +66,6 @@ public class Controller : BaseController
                 _rigidbody.AddForceY(_jumpPower, ForceMode2D.Impulse);
             }
         }
-
-        //사망
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    _upperRenderer.enabled = false;
-        //    _animator.SetTrigger("Dead");
-        //}
         
         //수류탄 투척
         if (Input.GetKeyDown(KeyCode.C))
@@ -78,23 +81,37 @@ public class Controller : BaseController
     
     public override void Attacking()
     {
-        if (IsAttacking == false)
+        if(_bulletQueue.Count < 2 )
+            _bulletQueue.Add(true);
+        
+        if (IsAttacking == false && _bulletQueue.Count > 0 )
         {
+            _bulletQueue.RemoveAt(0);
+            
             IsAttacking = true;
 
             if (_knife.CanAttack)
                 _knife.Attack();
             else
-                Shoot();
+                StartCoroutine (Shoot());
         }
     }
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
+        //과제 : 코루틴 정리
         _animator.SetTrigger("Attack");
 
+        yield return null; 
+        
         Transform bullet = Instantiate(_bullet).transform;
         bullet.position = _bulletPoint.position;
-        bullet.rotation = _transform.rotation;
+        bullet.rotation = _bulletPoint.rotation;
+    }
+
+    public void SetAttackPossible()
+    {
+        //과제 : 애니메이션 이벤트 정리
+        IsAttacking = false;
     }
 }
