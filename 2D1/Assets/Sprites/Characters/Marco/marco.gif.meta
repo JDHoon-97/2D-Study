@@ -3337,7 +3337,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 147
-        y: 4817
+        y: 4819
         width: 22
         height: 64
       alignment: 9
@@ -18024,6 +18024,28 @@ TextureImporter:
       bones: []
       spriteID: 9953883e61661d041afb775cf4ea174b
       internalID: -1327877295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marco_431
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 4818
+        width: 22
+        height: 40
+      alignment: 9
+      pivot: {x: 0.47743294, y: -0.008874511}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ff180800058cc4bb6d1c3834e5437e
+      internalID: 1455623076
       vertices: []
       indices: 
       edges: []
