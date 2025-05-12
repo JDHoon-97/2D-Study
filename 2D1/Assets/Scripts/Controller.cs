@@ -7,7 +7,6 @@ public class Controller : BaseController
 {
     [SerializeField] private SpriteRenderer _upperRenderer;
     [SerializeField] private float _jumpPower = 10;
-    [SerializeField] private float _moveSpeed = 10;
     
     [SerializeField] private Bullet _bullet;
     [SerializeField] private Transform _bulletPoint;
@@ -99,7 +98,6 @@ public class Controller : BaseController
 
     private IEnumerator Shoot()
     {
-        //과제 : 코루틴 정리
         _animator.SetTrigger("Attack");
 
         yield return null; 
@@ -111,7 +109,6 @@ public class Controller : BaseController
 
     public void SetAttackPossible()
     {
-        //과제 : 애니메이션 이벤트 정리
         IsAttacking = false;
     }
 }

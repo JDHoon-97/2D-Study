@@ -7,16 +7,17 @@ public abstract class BaseController : MonoBehaviour
     [SerializeField] protected Rigidbody2D _rigidbody;
     [SerializeField] protected BaseKnife _knife;
     [SerializeField] protected Transform _transform;
+    [SerializeField] protected float _moveSpeed = 10;
     
     private int groundMask = 1;
-    
-    public bool _isJumping;
-    
     protected float _xMovement;
+    public bool _isJumping;
+    public float Direction { get; set; }
+    
     public bool IsAttacking { get; set; }
     public Animator Animator => _animator;
     
-    private void Awake()
+    protected virtual void Awake()
     {
         //최적화에 도움이 됨. 마샬링 -> 블로그
         _transform = transform;
