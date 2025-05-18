@@ -198,7 +198,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 342901774}
   _knife: {fileID: 566964016}
   _transform: {fileID: 0}
-  _moveSpeed: 1
+  _moveSpeed: 1.2
   _isJumping: 0
   _upperRenderer: {fileID: 1349193219}
   _jumpPower: 3
@@ -566,10 +566,11 @@ MonoBehaviour:
   _animator: {fileID: 493786099}
   _rigidbody: {fileID: 493786095}
   _knife: {fileID: 1596586357}
-  _transform: {fileID: 0}
+  _transform: {fileID: 493786100}
   _moveSpeed: 1
   _isJumping: 0
   Renderer: {fileID: 493786097}
+  _player: {fileID: 342901776}
   _idletime: 1
   _walkingtime: 1
 --- !u!1 &519420028
@@ -1174,7 +1175,7 @@ GameObject:
   - component: {fileID: 1402013298}
   - component: {fileID: 1402013300}
   - component: {fileID: 1402013299}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EnermyFinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402013297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1209,7 +1210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 493786101}
-  _player: {fileID: 342901776}
 --- !u!58 &1402013300
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1346,7 +1346,7 @@ GameObject:
   - component: {fileID: 1596586357}
   m_Layer: 0
   m_Name: EnermyKnife
-  m_TagString: Untagged
+  m_TagString: AttackRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1396,7 +1396,7 @@ Transform:
   m_GameObject: {fileID: 1596586353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.281, y: 0, z: 0}
+  m_LocalPosition: {x: -0.061, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,13 +4,15 @@ using UnityEngine.Serialization;
 public class EnermyController : BaseController
 {
     [SerializeField] private SpriteRenderer Renderer;
-
+    [SerializeField] private Player _player;
+    
     [SerializeField] private float _idletime;
     [SerializeField] private float _walkingtime;
     
     private float _currentwalkingtime;
     private float _currentidletime;
-
+    
+    public bool IsAttackPlayer { get; set; }
     public bool IsIdle { get; set; }
     public bool IsWalking { get; set; }
     public bool IsChasing { get; set; }
@@ -19,6 +21,7 @@ public class EnermyController : BaseController
     {
         base.Awake();
 
+        _transform = transform;
         _currentwalkingtime = Time.time;
         Direction = 1.0f;
         IsIdle = true;
@@ -55,8 +58,34 @@ public class EnermyController : BaseController
         }
         else if (IsChasing)
         {
+            float distance = Vector2.Distance(transform.position, _player.transform.position);
             //적을 발견하고 추적
-            _xMovement = _moveSpeed * Direction;
+            SetDirection();
+            
+            if (_player._hp <= 0)
+            {
+                IsChasing = false;
+                IsIdle = true;
+                _currentidletime = Time.time;
+                return;
+            }
+            
+            if (distance < 0.3f) 
+            {
+                _xMovement = 0;
+                Attacking();
+            }
+            
+            else if (distance > 3.0f)
+            {
+                IsChasing = true;
+                IsIdle = false;
+            }
+            
+            else
+            {
+                _xMovement = _moveSpeed * Direction;
+            }
         }
     }
 
@@ -71,6 +100,11 @@ public class EnermyController : BaseController
         }
     }
     
+    public void SetDirection()
+    {
+        Vector3 direction = _player.transform.position - transform.position;
+        Direction = direction.x > 0 ? 1 : -1;
+    }
     
 }
 
