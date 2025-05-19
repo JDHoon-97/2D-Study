@@ -51,7 +51,9 @@
     <Compile Include="Assets\Scripts\AnimationController.cs" />
     <Compile Include="Assets\Scripts\BaseKnife.cs" />
     <Compile Include="Assets\Scripts\EnermyController.cs" />
+    <Compile Include="Assets\Scripts\StateMachine.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\FollowingCamera.cs" />
     <Compile Include="Assets\Scripts\AttackAnimation.cs" />
     <Compile Include="Assets\Scripts\Knife.cs" />
     <Compile Include="Assets\Scripts\BaseController.cs" />

@@ -9,84 +9,32 @@ public class EnermyController : BaseController
     [SerializeField] private float _idletime;
     [SerializeField] private float _walkingtime;
     
-    private float _currentwalkingtime;
-    private float _currentidletime;
+    private StateMachine _stateMachine;
     
-    public bool IsAttackPlayer { get; set; }
-    public bool IsIdle { get; set; }
-    public bool IsWalking { get; set; }
-    public bool IsChasing { get; set; }
-    
+    public float IdleTime => _idletime;
+    public float WalkingTime => _walkingtime;
+    public bool IsDetect { get; set; }
+
     protected override void Awake()
     {
         base.Awake();
 
         _transform = transform;
-        _currentwalkingtime = Time.time;
         Direction = 1.0f;
-        IsIdle = true;
+        
+        _stateMachine = new StateMachine(new IdleState(), this);
     }
     
     protected override void Update()
     {
         base.Update();
 
-        if (IsIdle)
-        {
-            _xMovement = 0;
-            
-            if (Time.time - _currentidletime > _idletime)
-            {
-                Direction *= -1;
-                _currentwalkingtime = Time.time;
-                IsWalking = true;
-                IsIdle = false;
+        //플레이어는 항상 상태 한개를 기본적으로 가짐.
+        //상태는 항상 한개 >> 유한 상태 기체 (Finite State Machine)
+        //FSM은 상태 패턴 중의 하나.
+        //상태 패턴 > 상태를 클래스화 >> 객체화를 한다.
 
-            }
-        }
-        else if (IsWalking)
-        {
-            _xMovement = _moveSpeed * Direction;
-            
-            if (Time.time - _currentwalkingtime > _walkingtime)
-            {
-                //Idle 플래그 On
-                _currentidletime = Time.time;
-                IsWalking = false;
-                IsIdle = true;
-            }
-        }
-        else if (IsChasing)
-        {
-            float distance = Vector2.Distance(transform.position, _player.transform.position);
-            //적을 발견하고 추적
-            SetDirection();
-            
-            if (_player._hp <= 0)
-            {
-                IsChasing = false;
-                IsIdle = true;
-                _currentidletime = Time.time;
-                return;
-            }
-            
-            if (distance < 0.3f) 
-            {
-                _xMovement = 0;
-                Attacking();
-            }
-            
-            else if (distance > 3.0f)
-            {
-                IsChasing = true;
-                IsIdle = false;
-            }
-            
-            else
-            {
-                _xMovement = _moveSpeed * Direction;
-            }
-        }
+        _stateMachine.Update();
     }
 
     public override void Attacking()
@@ -105,6 +53,19 @@ public class EnermyController : BaseController
         Vector3 direction = _player.transform.position - transform.position;
         Direction = direction.x > 0 ? 1 : -1;
     }
-    
+
+    public void Move(bool stop)
+    {
+        if(stop)
+            _xMovement = 0;
+        else
+            _xMovement = _moveSpeed * Direction;
+    }
+
+    public float GetDistanceToThePlayer()
+    {
+        float distance = Vector2.Distance(transform.position, _player.transform.position);
+        return distance;
+    }
 }
 

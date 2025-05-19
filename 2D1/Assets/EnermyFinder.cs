@@ -9,10 +9,15 @@ public class EnermyFinder : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //TODO : 추적 상태로 전환
-            _controller.IsIdle = false;
-            _controller.IsWalking = false;
-            _controller.IsChasing = true;
+            _controller.IsDetect = true;
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _controller.IsDetect = false;
         }
     }
 }
