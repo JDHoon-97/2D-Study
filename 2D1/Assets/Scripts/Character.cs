@@ -4,7 +4,7 @@ using UnityEngine.InputSystem.Processors;
 public class Character : MonoBehaviour
 {
     [SerializeField] public int _hp;
-    [SerializeField] protected Animator _animator;
+    [SerializeField] public Animator _animator;
     [SerializeField] private SpriteRenderer _upperRenderer;
 
     public virtual void TakeDamage(int damage)

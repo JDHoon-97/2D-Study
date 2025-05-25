@@ -39,6 +39,7 @@ public class IdleState : IState
     private EnermyController _controller;
     private float _currentTime;
     private float _endTime;
+    private Enermy _enermy;
     
     public void Enter(EnermyController controller)
     {
@@ -56,14 +57,17 @@ public class IdleState : IState
 
     public IState ChangeState()
     {
+        if (_controller._enermy._hp <= 0)
+            return new DeadState();
+        
         if (Time.time - _currentTime > _endTime)
-        {
+        
             return new WalkState();
-        }
-
+        
         if (_controller.IsDetect)
             return new ChasingState();
         
+
         return this;
     }
 }
@@ -73,6 +77,7 @@ public class WalkState : IState
     private EnermyController _controller;
     private float _currentTime;
     private float _endTime;
+    private Enermy _enermy;
     
     public void Enter(EnermyController controller)
     {
@@ -92,6 +97,9 @@ public class WalkState : IState
 
     public IState ChangeState()
     {
+        if (_controller._enermy._hp <= 0)
+            return new DeadState();
+        
         if (Time.time - _currentTime > _endTime)
         {
             return new IdleState();
@@ -99,7 +107,7 @@ public class WalkState : IState
 
         if (_controller.IsDetect)
             return new ChasingState();
-                
+        
         return this;
     }
 }
@@ -108,6 +116,7 @@ public class ChasingState : IState
 {
     private EnermyController _controller;
     private float _attackDistance;
+    private Enermy _enermy;
     
     public void Enter(EnermyController controller)
     {
@@ -127,6 +136,9 @@ public class ChasingState : IState
 
     public IState ChangeState()
     {
+        if (_controller._enermy._hp <= 0)
+            return new DeadState();
+        
         if (_controller.IsDetect == false)
         {
             return new IdleState();
@@ -144,6 +156,7 @@ public class AttackState : IState
 {
     private EnermyController _controller;
     private float _attackDistance;
+    private Enermy _enermy;
     public void Enter(EnermyController controller)
     {
         _controller = controller;
@@ -163,6 +176,9 @@ public class AttackState : IState
 
     public IState ChangeState()
     {
+        if (_controller._enermy._hp <= 0)
+            return new DeadState();
+        
         if(_controller.IsDetect == false)
             return new IdleState();
         
@@ -170,6 +186,44 @@ public class AttackState : IState
         if (distance > _attackDistance)
             return new IdleState();
         
+        return this;
+    }
+}
+
+public class DeadState : IState
+{
+    private EnermyController _controller;
+    private Enermy _enermy;
+    
+    public void Enter(EnermyController controller)
+    {
+        _controller = controller;
+        _enermy = controller.GetComponent<Enermy>();
+        
+        var collider = controller.GetComponent<Collider2D>();
+        var rigid = controller.GetComponent<Rigidbody2D>();
+        
+        if (_enermy != null)
+        {
+            _enermy.Dead();
+        }
+        
+        collider.enabled = false;
+        rigid.linearVelocity = Vector2.zero;
+        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        _controller.enabled = false;
+    }
+
+    public void Update()
+    {
+    }
+
+    public void Exit()
+    {
+    }
+
+    public IState ChangeState()
+    {
         return this;
     }
 }

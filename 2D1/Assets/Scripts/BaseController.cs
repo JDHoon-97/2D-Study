@@ -92,8 +92,8 @@ public abstract class BaseController : MonoBehaviour
         if (hit)
         {
             perp = Vector2.Perpendicular(hit.normal).normalized;
-            Debug.DrawLine(hit.point, hit.point + hit.normal, Color.blue);
-            Debug.DrawLine(hit.point, hit.point + perp, Color.red);
+            //Debug.DrawLine(hit.point, hit.point + hit.normal, Color.blue);
+            //Debug.DrawLine(hit.point, hit.point + perp, Color.red);
         }
     }
 }

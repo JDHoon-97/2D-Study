@@ -5,6 +5,7 @@ public class EnermyController : BaseController
 {
     [SerializeField] private SpriteRenderer Renderer;
     [SerializeField] private Player _player;
+    [SerializeField] public Enermy _enermy;
     
     [SerializeField] private float _idletime;
     [SerializeField] private float _walkingtime;
@@ -67,5 +68,6 @@ public class EnermyController : BaseController
         float distance = Vector2.Distance(transform.position, _player.transform.position);
         return distance;
     }
+    
 }
 
