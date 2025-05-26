@@ -53,6 +53,7 @@ public class EnermyController : BaseController
     {
         Vector3 direction = _player.transform.position - transform.position;
         Direction = direction.x > 0 ? 1 : -1;
+        
     }
 
     public void Move(bool stop)
