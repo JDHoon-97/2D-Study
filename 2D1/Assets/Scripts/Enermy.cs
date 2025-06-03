@@ -10,6 +10,7 @@ public class Enermy : Character
         {
             _animator.SetTrigger("EnermyDead");
         }
-        //Destroy(gameObject);
+        
+        Destroy(gameObject, 3f);
     }
 }

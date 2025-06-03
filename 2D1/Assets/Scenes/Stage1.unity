@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &216982366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 216982367}
+  m_Layer: 0
+  m_Name: BubblePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &216982367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216982366}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.096, y: 0.014, z: 0.007915355}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2114616739}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &342901768
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 342901768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.249, y: -0.395, z: 0}
+  m_LocalPosition: {x: -7.618, y: -0.395, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -347,6 +378,7 @@ MonoBehaviour:
   _hp: 3
   _animator: {fileID: 342901770}
   _upperRenderer: {fileID: 1349193219}
+  _controller: {fileID: 342901772}
 --- !u!1 &493786093
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +416,7 @@ MonoBehaviour:
   _hp: 3
   _animator: {fileID: 493786099}
   _upperRenderer: {fileID: 493786097}
+  _controller: {fileID: 493786101}
 --- !u!50 &493786095
 Rigidbody2D:
   serializedVersion: 5
@@ -574,6 +607,8 @@ MonoBehaviour:
   _enermy: {fileID: 493786094}
   _idletime: 1
   _walkingtime: 1
+  _bubble: {fileID: 7946675020315252852, guid: 05cac6353cb62794d837fa8decbee65b, type: 3}
+  _bubblePoint: {fileID: 216982367}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +716,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -990,7 +1025,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.7
 --- !u!114 &714343922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,7 +1121,7 @@ Transform:
   m_GameObject: {fileID: 727417304}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.016, y: -0.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1129,7 +1164,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -8.020864, y: -0.44859385}
+  - {x: -8.025606, y: 1.0217544}
+  - {x: -8.050367, y: -0.44164106}
   - {x: -6.3340545, y: -0.4534278}
   - {x: -5.2821355, y: -0.45251197}
   - {x: -4.2688656, y: -0.42482266}
@@ -1201,7 +1237,7 @@ Transform:
   m_GameObject: {fileID: 1121349551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.38, y: -0.008, z: 0}
+  m_LocalPosition: {x: 0.047, y: -0.008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1242,7 +1278,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.15, y: 0}
-  m_Radius: 0.15
+  m_Radius: 0.3
 --- !u!114 &1121349554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,7 +1647,7 @@ GameObject:
   - component: {fileID: 2114616740}
   m_Layer: 10
   m_Name: Crab
-  m_TagString: Enermy
+  m_TagString: Crab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1662,7 +1698,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300070, guid: 90bfb4f3116bfeb47b7ad307b14cdcff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.51, y: 0.45}
@@ -1705,7 +1741,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0030554533, y: -0.0030550659}
+  m_Offset: {x: -0.03151381, y: -0.014912695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1715,7 +1751,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.54171395, y: 0.46838754}
+  m_Size: {x: 0.38045, y: 0.4446723}
   m_EdgeRadius: 0
 --- !u!114 &2114616736
 MonoBehaviour:
@@ -1732,6 +1768,7 @@ MonoBehaviour:
   _hp: 3
   _animator: {fileID: 2114616740}
   _upperRenderer: {fileID: 2114616734}
+  _controller: {fileID: 2114616738}
 --- !u!50 &2114616737
 Rigidbody2D:
   serializedVersion: 5
@@ -1782,6 +1819,8 @@ MonoBehaviour:
   _enermy: {fileID: 2114616736}
   _idletime: 1
   _walkingtime: 1
+  _bubble: {fileID: 7946675020315252852, guid: 05cac6353cb62794d837fa8decbee65b, type: 3}
+  _bubblePoint: {fileID: 216982367}
 --- !u!4 &2114616739
 Transform:
   m_ObjectHideFlags: 0
@@ -1790,13 +1829,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114616733}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.389, y: -0.241, z: -0.030879019}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.183, y: -0.241, z: -0.030879019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1121349552}
   - {fileID: 714343920}
+  - {fileID: 216982367}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2114616740

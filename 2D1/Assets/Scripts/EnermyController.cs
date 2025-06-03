@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,11 +11,17 @@ public class EnermyController : BaseController
     
     [SerializeField] private float _idletime;
     [SerializeField] private float _walkingtime;
+    [SerializeField] private Bubble _bubble;
+    [SerializeField] private Transform _bubblePoint;
+    private List<bool> _bubbleQueue = new List<bool>();
     
     private StateMachine _stateMachine;
     
+    private float _currnethp;
+    private float _previoushp;
     public float IdleTime => _idletime;
     public float WalkingTime => _walkingtime;
+    
     public bool IsDetect { get; set; }
 
     protected override void Awake()
@@ -29,7 +37,11 @@ public class EnermyController : BaseController
     protected override void Update()
     {
         base.Update();
-
+        
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            BubbleAttack(true);
+        }
         //플레이어는 항상 상태 한개를 기본적으로 가짐.
         //상태는 항상 한개 >> 유한 상태 기체 (Finite State Machine)
         //FSM은 상태 패턴 중의 하나.
@@ -69,6 +81,45 @@ public class EnermyController : BaseController
         float distance = Vector2.Distance(transform.position, _player.transform.position);
         return distance;
     }
+
+    public void GetDamage()
+    {
+        _currnethp = _enermy._hp;
+        
+        if (_currnethp < _previoushp && _enermy._hp != 0)
+        {
+            _animator.SetTrigger("GetDamage");
+            _previoushp = _currnethp;
+        }
+        
+        _previoushp = _enermy._hp;
+
+    }
+
+    public void BubbleAttack(bool isBubbleAttack)
+    {
+        if (isBubbleAttack)
+        {
+            if (_bubbleQueue.Count < 2)
+                _bubbleQueue.Add(true);
+            if (_bubbleQueue.Count > 0)
+            {
+                _bubbleQueue.RemoveAt(0);
+
+                IsAttacking = true;
+
+                BubbleShoot();
+            }
+        }
+        _animator.SetTrigger("IsBubbleAttack");
+    }
     
+
+    private void BubbleShoot()
+    {
+        Transform bubble = Instantiate(_bubble).transform;
+        bubble.position = _bubblePoint.position;
+        bubble.rotation = _bubblePoint.rotation;
+    }
 }
 

@@ -9,7 +9,7 @@ public class Knife : BaseKnife
     public override bool CanAttack => _enemies.Count > 0;
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enermy"))
+        if (collision.gameObject.CompareTag("Enermy")||collision.gameObject.CompareTag("Crab"))
         {
             var enemy = collision.GetComponent<Enermy>();
             if (enemy != null && !enemy.IsDead && !_enemies.Contains(enemy))
@@ -21,7 +21,7 @@ public class Knife : BaseKnife
 
     public override void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enermy"))
+        if (collision.gameObject.CompareTag("Enermy")||collision.gameObject.CompareTag("Crab"))
         {
             _enemies.Remove(collision.gameObject.GetComponent<Enermy>());
         }

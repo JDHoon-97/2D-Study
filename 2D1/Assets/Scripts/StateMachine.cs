@@ -50,6 +50,7 @@ public class IdleState : IState
     public void Update()
     {
         _controller.Move(true);
+        _controller.GetDamage();
     }
     public void Exit()
     {
@@ -90,6 +91,7 @@ public class WalkState : IState
     public void Update()
     {
         _controller.Move(false);
+        _controller.GetDamage();
     }
     public void Exit()
     {
@@ -116,18 +118,22 @@ public class ChasingState : IState
 {
     private EnermyController _controller;
     private float _attackDistance;
+    public float _chasingTime;
     private Enermy _enermy;
     
     public void Enter(EnermyController controller)
     {
         _controller = controller;
         _attackDistance = 0.3f;
+        _controller = controller;
+        _chasingTime = Time.time;
     }
 
     public void Update()
     {
         _controller.SetDirection();
         _controller.Move(false);
+        _controller.GetDamage();
     }
 
     public void Exit()
@@ -144,6 +150,11 @@ public class ChasingState : IState
             return new IdleState();
         }
 
+        if (_chasingTime < 3f)
+        {
+            return new AttackState();
+        }
+        
         float distance = _controller.GetDistanceToThePlayer();
         if (distance < _attackDistance)
             return new AttackState();
@@ -157,10 +168,15 @@ public class AttackState : IState
     private EnermyController _controller;
     private float _attackDistance;
     private Enermy _enermy;
+    private bool IsBubbleAttack;
     public void Enter(EnermyController controller)
     {
         _controller = controller;
         _attackDistance = 0.3f;
+        if (controller.gameObject.CompareTag("Crab"))
+        {
+            IsBubbleAttack = true;
+        }
     }
 
     public void Update()
@@ -168,10 +184,13 @@ public class AttackState : IState
         _controller.SetDirection();
         _controller.Move(true);
         _controller.Attacking();
+        _controller.GetDamage();
+        _controller.BubbleAttack(IsBubbleAttack);
     }
 
     public void Exit()
     {
+        IsBubbleAttack = false;
     }
 
     public IState ChangeState()

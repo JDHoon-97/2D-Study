@@ -24,7 +24,7 @@ public class EnermyKnife : BaseKnife
     public override void Attack()
     {
         _controller.Animator.SetTrigger("IsKnifeAttack");
-
+        Debug.Log("트리거 s설정 완료");
         if (_player)
         {
             _player.TakePlayerDamage(1);
