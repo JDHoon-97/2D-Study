@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5629491816320926640}
-  _speed: 0
+  _speed: 0.5
   _damage: 0
-  _lifeTime: 2
+  _lifeTime: 10
   _animator: {fileID: 0}
+  _player: {fileID: 0}

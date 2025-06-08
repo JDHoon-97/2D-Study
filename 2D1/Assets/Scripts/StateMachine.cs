@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IState
@@ -32,6 +33,10 @@ public class StateMachine
             _state.Enter(_controller);
         }
     }
+    public string GetCurrentStateName()
+    {
+        return _state.GetType().Name;
+    }
 }
 
 public class IdleState : IState
@@ -62,13 +67,11 @@ public class IdleState : IState
             return new DeadState();
         
         if (Time.time - _currentTime > _endTime)
-        
             return new WalkState();
         
         if (_controller.IsDetect)
             return new ChasingState();
         
-
         return this;
     }
 }
@@ -118,20 +121,16 @@ public class ChasingState : IState
 {
     private EnermyController _controller;
     private float _attackDistance;
-    public float _chasingTime;
     private Enermy _enermy;
     
     public void Enter(EnermyController controller)
     {
         _controller = controller;
         _attackDistance = 0.3f;
-        _controller = controller;
-        _chasingTime = Time.time;
     }
 
     public void Update()
     {
-        _controller.SetDirection();
         _controller.Move(false);
         _controller.GetDamage();
     }
@@ -149,61 +148,113 @@ public class ChasingState : IState
         {
             return new IdleState();
         }
-
-        if (_chasingTime < 3f)
-        {
-            return new AttackState();
-        }
         
         float distance = _controller.GetDistanceToThePlayer();
+        
         if (distance < _attackDistance)
             return new AttackState();
-
+        
         return this;
     }
 }
-
+//근접 공격 상태
+//원거리 공격 상태
 public class AttackState : IState
 {
     private EnermyController _controller;
     private float _attackDistance;
     private Enermy _enermy;
-    private bool IsBubbleAttack;
+    private float _currentTime;
+    private float _endTime;
     public void Enter(EnermyController controller)
     {
         _controller = controller;
         _attackDistance = 0.3f;
-        if (controller.gameObject.CompareTag("Crab"))
-        {
-            IsBubbleAttack = true;
-        }
+        _currentTime = Time.time;
+        _endTime = controller.AttackTime;
+
     }
 
     public void Update()
     {
-        _controller.SetDirection();
-        _controller.Move(true);
-        _controller.Attacking();
-        _controller.GetDamage();
-        _controller.BubbleAttack(IsBubbleAttack);
+        //범위를 검사 > 공격 패턴 정하기
+            _controller.SetDirection();
+            _controller.Move(true);
+            _controller.Attacking();
+            _controller.GetDamage();
     }
 
     public void Exit()
     {
-        IsBubbleAttack = false;
     }
 
     public IState ChangeState()
     {
         if (_controller._enermy._hp <= 0)
             return new DeadState();
+
+        //TODO : 공격 애니메이션이 종료되면 Idle
+        if(_controller.IsAttacking==false)
+            return new IdleState();
         
         if(_controller.IsDetect == false)
             return new IdleState();
         
+        if (Time.time - _currentTime > _endTime)
+        {
+            return new SpecialAttackState();
+        }
+        
         float distance = _controller.GetDistanceToThePlayer();
         if (distance > _attackDistance)
             return new IdleState();
+        
+        return this;
+    }
+}
+
+public class SpecialAttackState : IState
+{
+    private EnermyController _controller;
+    private float _currentTime;
+    private float _endTime;
+    public void Enter(EnermyController controller)
+    {
+        _controller = controller;
+        _currentTime = Time.time;
+        _endTime = controller.SpecailAttackTime;
+        _controller.CanSpecialAttack = true;
+    }
+
+    public void Update()
+    {
+        //범위를 검사 > 공격 패턴 정하기
+        _controller.SetDirection();
+        _controller.Move(true);
+        _controller.BubbleAttack();
+        _controller.GetDamage();
+        _controller.SetSpecialAttackPossible();
+    }
+
+    public void Exit()
+    {
+    }
+
+    public IState ChangeState()
+    {
+        if (_controller._enermy._hp <= 0)
+            return new DeadState();
+
+        //TODO : 공격 애니메이션이 종료되면 Idle
+        if(_controller.IsAttacking==false)
+            return new IdleState();
+        
+        if(_controller.IsDetect == false)
+            return new IdleState();
+        if (Time.time - _currentTime > _endTime)
+        {
+            return new AttackState();
+        }
         
         return this;
     }

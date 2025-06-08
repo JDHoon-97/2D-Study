@@ -15,6 +15,7 @@ public abstract class BaseController : MonoBehaviour
     public float Direction { get; set; }
     
     public bool IsAttacking { get; set; }
+    public bool IsSpecialAttacking { get; set; }
     public Animator Animator => _animator;
     
     protected virtual void Awake()

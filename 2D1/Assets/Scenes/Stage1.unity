@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa757738fc4349871f7e15617584d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 3
+  _hp: 100000
   _animator: {fileID: 342901770}
   _upperRenderer: {fileID: 1349193219}
   _controller: {fileID: 342901772}
@@ -605,8 +605,11 @@ MonoBehaviour:
   Renderer: {fileID: 493786097}
   _player: {fileID: 342901776}
   _enermy: {fileID: 493786094}
+  _specailWeapon: {fileID: 0}
   _idletime: 1
   _walkingtime: 1
+  _attacktime: 0
+  _specialattacktime: 0
   _bubble: {fileID: 7946675020315252852, guid: 05cac6353cb62794d837fa8decbee65b, type: 3}
   _bubblePoint: {fileID: 216982367}
 --- !u!1 &519420028
@@ -1025,7 +1028,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.7
+  m_Radius: 2
 --- !u!114 &714343922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,6 +1213,87 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!1 &901047245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 901047248}
+  - component: {fileID: 901047247}
+  - component: {fileID: 901047246}
+  m_Layer: 0
+  m_Name: Bubble
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &901047246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901047245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbba9ac7e5a46124699ae6b303c08298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &901047247
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901047245}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.3
+--- !u!4 &901047248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901047245}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.008, y: -0.014, z: 0.003609268}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2114616739}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1121349551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,8 +1901,11 @@ MonoBehaviour:
   Renderer: {fileID: 2114616734}
   _player: {fileID: 342901776}
   _enermy: {fileID: 2114616736}
+  _specailWeapon: {fileID: 901047246}
   _idletime: 1
   _walkingtime: 1
+  _attacktime: 1
+  _specialattacktime: 1
   _bubble: {fileID: 7946675020315252852, guid: 05cac6353cb62794d837fa8decbee65b, type: 3}
   _bubblePoint: {fileID: 216982367}
 --- !u!4 &2114616739
@@ -1834,6 +1921,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 901047248}
   - {fileID: 1121349552}
   - {fileID: 714343920}
   - {fileID: 216982367}

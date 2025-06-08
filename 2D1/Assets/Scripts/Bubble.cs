@@ -14,6 +14,10 @@ public class Bubble : MonoBehaviour
         Vector3 bubbleDirection = transform.right;
         _rigidbody.AddForce(bubbleDirection * _speed, ForceMode2D.Impulse);
         _cuurrentLifeTime = _lifeTime;
+        
+        //TODO : 플레이어 참조 연결
+        _player = GameManager.Instance.Player;
+
     }
 
     private void Update()
@@ -26,10 +30,12 @@ public class Bubble : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //빨간색 : error
+        //노란색 : Warning
         if (other.gameObject.CompareTag("Player"))
         {
             _player.TakeDamage(1);
-            _animator.SetTrigger("IsHit");
+            //_animator.SetTrigger("IsHit");
             _rigidbody.linearVelocity = Vector2.zero;
             
             Destroy(gameObject,0.2f);
