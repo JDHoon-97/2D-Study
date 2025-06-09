@@ -10,7 +10,7 @@ public abstract class BaseController : MonoBehaviour
     [SerializeField] protected float _moveSpeed = 10;
     
     private int groundMask = 1;
-    protected float _xMovement;
+    public float _xMovement;
     public bool _isJumping;
     public float Direction { get; set; }
     

@@ -222,23 +222,29 @@ public class AttackState : IState
 public class SpecialAttackState : IState
 {
     private EnermyController _controller;
-    private float _currentTime;
-    private float _endTime;
+    private bool _oneBubble;
+    // private float _currentTime;
+    // private float _endTime;
     public void Enter(EnermyController controller)
     {
         _controller = controller;
         _controller.CanSpecialAttack = false;
+        _oneBubble = false;
         
-        _currentTime = Time.time;
-        _endTime = controller.SpecailAttackTime;
+        // _currentTime = Time.time;
+        // _endTime = controller.SpecailAttackTime;
     }
 
     public void Update()
     {
         //범위를 검사 > 공격 패턴 정하기
         _controller.SetDirection();
-        _controller.Move(true);
-        _controller.BubbleAttack();
+        _controller.Move(true); 
+        if (!_oneBubble)
+        {
+            _controller.BubbleAttack();
+            _oneBubble = true;
+        }
         _controller.GetDamage();
         _controller.SetSpecialAttackPossible();
     }
@@ -251,17 +257,15 @@ public class SpecialAttackState : IState
     {
         if (_controller._enermy._hp <= 0)
             return new DeadState();
-
-        //TODO : 공격 애니메이션이 종료되면 Idle
-        if(_controller.IsSpecialAttacking==false)
-            return new IdleState();
         
         if(_controller.IsDetect == false)
             return new IdleState();
-        if(Time.time - _currentTime > _endTime)
+        // if(Time.time - _currentTime > _endTime)
+        //     return new ChasingState();
+        //
+        if (_controller.IsDetect)
             return new ChasingState();
-        
-        return new IdleState();
+        return this;
     }
 }
 
