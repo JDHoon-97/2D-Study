@@ -104,7 +104,7 @@ public class EnermyController : BaseController
     {
             if (_bubbleQueue.Count < 2)
                 _bubbleQueue.Add(true);
-            if (IsSpecialAttacking == false && _bubbleQueue.Count > 0)
+            if (!IsSpecialAttacking && _bubbleQueue.Count > 0)
             {
                 _bubbleQueue.RemoveAt(0);
 

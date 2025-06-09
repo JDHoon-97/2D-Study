@@ -121,12 +121,17 @@ public class ChasingState : IState
 {
     private EnermyController _controller;
     private float _attackDistance;
+    private float _currentTime;
+    private float _endTime;
     private Enermy _enermy;
     
     public void Enter(EnermyController controller)
     {
         _controller = controller;
         _attackDistance = 0.3f;
+        
+         _currentTime = Time.time;
+         _endTime = controller.SpecailAttackTime;
     }
 
     public void Update()
@@ -149,6 +154,11 @@ public class ChasingState : IState
             return new IdleState();
         }
         
+          if (Time.time - _currentTime > _endTime)
+          {
+              return new SpecialAttackState();
+          }
+        
         float distance = _controller.GetDistanceToThePlayer();
         
         if (distance < _attackDistance)
@@ -163,6 +173,7 @@ public class AttackState : IState
 {
     private EnermyController _controller;
     private float _attackDistance;
+    private float _specialAttackDistance;
     private Enermy _enermy;
     private float _currentTime;
     private float _endTime;
@@ -170,9 +181,6 @@ public class AttackState : IState
     {
         _controller = controller;
         _attackDistance = 0.3f;
-        _currentTime = Time.time;
-        _endTime = controller.AttackTime;
-
     }
 
     public void Update()
@@ -200,12 +208,8 @@ public class AttackState : IState
         if(_controller.IsDetect == false)
             return new IdleState();
         
-        if (Time.time - _currentTime > _endTime)
-        {
-            return new SpecialAttackState();
-        }
-        
         float distance = _controller.GetDistanceToThePlayer();
+        
         if (distance > _attackDistance)
             return new IdleState();
         
@@ -213,6 +217,8 @@ public class AttackState : IState
     }
 }
 
+// 원거리 범위 내에 들어오면 한 번 SpecialAttack
+// 이후 근거리 될 때까지 Chasing
 public class SpecialAttackState : IState
 {
     private EnermyController _controller;
@@ -221,9 +227,10 @@ public class SpecialAttackState : IState
     public void Enter(EnermyController controller)
     {
         _controller = controller;
+        _controller.CanSpecialAttack = false;
+        
         _currentTime = Time.time;
         _endTime = controller.SpecailAttackTime;
-        _controller.CanSpecialAttack = true;
     }
 
     public void Update()
@@ -246,17 +253,15 @@ public class SpecialAttackState : IState
             return new DeadState();
 
         //TODO : 공격 애니메이션이 종료되면 Idle
-        if(_controller.IsAttacking==false)
+        if(_controller.IsSpecialAttacking==false)
             return new IdleState();
         
         if(_controller.IsDetect == false)
             return new IdleState();
-        if (Time.time - _currentTime > _endTime)
-        {
-            return new AttackState();
-        }
+        if(Time.time - _currentTime > _endTime)
+            return new ChasingState();
         
-        return this;
+        return new IdleState();
     }
 }
 
