@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class AttackAnimation : StateMachineBehaviour
-{
-    private BaseController _controller;
+public class EnermyAttackAnimation : StateMachineBehaviour
+{   
+    private EnermyController _controller;
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (_controller == null)
         {
-            _controller = animator.GetComponent<BaseController>();
+            _controller = animator.GetComponent<EnermyController>();
         }
 
         if (_controller != null)
         {
-            _controller.IsAttacking = false;
+            _controller.IsSpecialAttacking = false;
         }
     }
 }

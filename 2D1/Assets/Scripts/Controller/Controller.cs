@@ -72,6 +72,12 @@ public class Controller : BaseController
             _animator.SetTrigger("IsThrowBomb");
         }
         
+        if (Mathf.Approximately(_xMovement, 0.0f) == false)
+        {
+            float y = _xMovement > 0.0f ? 0.0f : -180.0f;
+            _transform.rotation = Quaternion.Euler(0, y, 0);
+        }
+        
         _animator.SetBool("IsJumping", _isJumping);
         _animator.SetBool("IsUp", isUp);
         _animator.SetBool("IsDown", isDown);

@@ -22,8 +22,7 @@ public class Bullet : MonoBehaviour
         if (_cuurrentLifeTime <= 0)
             Destroy(gameObject);
     }
-
-    //TODO Use bullet pull
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enermy")||other.gameObject.CompareTag("Crab"))
@@ -34,6 +33,12 @@ public class Bullet : MonoBehaviour
             _rigidbody.linearVelocity = Vector2.zero;
             
             Destroy(gameObject,0.2f);
+        }
+
+        if (other.gameObject.CompareTag("Boat"))
+        {
+            var boat = other.gameObject.GetComponent<BoatMove>();
+            boat._hp -= _damage;
         }
     }
 }

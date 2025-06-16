@@ -69,6 +69,22 @@ public class EnermyController : BaseController
         Vector3 direction = _player.transform.position - transform.position;
         Direction = direction.x > 0 ? 1 : -1;
         
+        if (Mathf.Approximately(Direction, 0.0f) == false)
+        {
+            float y = Direction > 0.0f ? 0.0f : -180.0f;
+            _transform.rotation = Quaternion.Euler(0, y, 0);
+        }
+    }
+
+    public void TurnDirection()
+    {
+        Direction *= -1;
+        
+        if (Mathf.Approximately(Direction, 0.0f) == false)
+        {
+            float y = Direction > 0.0f ? 0.0f : -180.0f;
+            _transform.rotation = Quaternion.Euler(0, y, 0);
+        }
     }
 
     public void Move(bool stop)
@@ -109,7 +125,7 @@ public class EnermyController : BaseController
                 _bubbleQueue.RemoveAt(0);
 
                 IsSpecialAttacking = true;
-                if (_specailWeapon.CanSpecailAttack)
+                if (_specailWeapon.CanSpecialAttack)
                     BubbleShoot();
             }
     }

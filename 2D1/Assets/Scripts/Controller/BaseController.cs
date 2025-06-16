@@ -12,7 +12,7 @@ public abstract class BaseController : MonoBehaviour
     private int groundMask = 1;
     public float _xMovement;
     public bool _isJumping;
-    public float Direction { get; set; }
+    protected float Direction { get; set; }
     
     public bool IsAttacking { get; set; }
     public bool IsSpecialAttacking { get; set; }
@@ -75,12 +75,6 @@ public abstract class BaseController : MonoBehaviour
             _rigidbody.linearVelocityX = perp.x * _xMovement * -1f;
         else
             _rigidbody.linearVelocityX = _xMovement;
-        
-        if (Mathf.Approximately(_xMovement, 0.0f) == false)
-        {
-            float y = _xMovement > 0.0f ? 0.0f : -180.0f;
-            _transform.rotation = Quaternion.Euler(0, y, 0);
-        }
     }
 
     private void OnDrawGizmos()

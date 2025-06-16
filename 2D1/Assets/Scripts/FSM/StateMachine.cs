@@ -89,7 +89,7 @@ public class WalkState : IState
         _currentTime = Time.time;
         _endTime = controller.WalkingTime;
         
-        _controller.Direction *= -1;
+        _controller.TurnDirection();
     }
     public void Update()
     {
@@ -129,9 +129,9 @@ public class ChasingState : IState
     {
         _controller = controller;
         _attackDistance = 0.3f;
-        
-         _currentTime = Time.time;
-         _endTime = controller.SpecailAttackTime;
+        _controller.SetDirection();
+        _currentTime = Time.time; 
+        _endTime = controller.SpecailAttackTime;
     }
 
     public void Update()
@@ -223,30 +223,24 @@ public class SpecialAttackState : IState
 {
     private EnermyController _controller;
     private bool _oneBubble;
-    // private float _currentTime;
-    // private float _endTime;
     public void Enter(EnermyController controller)
     {
         _controller = controller;
         _controller.CanSpecialAttack = false;
         _oneBubble = false;
-        
-        // _currentTime = Time.time;
-        // _endTime = controller.SpecailAttackTime;
     }
 
     public void Update()
     {
         //범위를 검사 > 공격 패턴 정하기
         _controller.SetDirection();
-        _controller.Move(true); 
+        _controller.Move(true);
         if (!_oneBubble)
         {
             _controller.BubbleAttack();
             _oneBubble = true;
         }
         _controller.GetDamage();
-        _controller.SetSpecialAttackPossible();
     }
 
     public void Exit()
@@ -260,11 +254,11 @@ public class SpecialAttackState : IState
         
         if(_controller.IsDetect == false)
             return new IdleState();
-        // if(Time.time - _currentTime > _endTime)
-        //     return new ChasingState();
-        //
-        if (_controller.IsDetect)
+        
+        //TODO : 원거리 공격이 끝났을 경우 Chasing 상태로 전환
+        if (_controller.IsSpecialAttacking == false)
             return new ChasingState();
+        
         return this;
     }
 }

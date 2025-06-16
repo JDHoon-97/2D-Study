@@ -8,6 +8,8 @@ TagManager:
   - Enermy
   - AttackRange
   - Crab
+  - MapObject
+  - Boat
   layers:
   - Default
   - TransparentFX

@@ -46,25 +46,29 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Character.cs" />
-    <Compile Include="Assets\Scripts\listex.cs" />
-    <Compile Include="Assets\Scripts\AnimationController.cs" />
-    <Compile Include="Assets\Scripts\BaseKnife.cs" />
-    <Compile Include="Assets\Scripts\EnermyController.cs" />
-    <Compile Include="Assets\Scripts\StateMachine.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\FollowingCamera.cs" />
-    <Compile Include="Assets\Scripts\AttackAnimation.cs" />
-    <Compile Include="Assets\Scripts\Knife.cs" />
-    <Compile Include="Assets\SpecialWeapon.cs" />
-    <Compile Include="Assets\Scripts\BaseController.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Scripts\Enermy.cs" />
-    <Compile Include="Assets\Scripts\Bubble.cs" />
-    <Compile Include="Assets\EnermyFinder.cs" />
-    <Compile Include="Assets\Scripts\EnermyKnife.cs" />
+    <Compile Include="Assets\Scripts\Boat\BoatMove.cs" />
+    <Compile Include="Assets\Scripts\Object.cs" />
+    <Compile Include="Assets\Scripts\Weapon\BaseKnife.cs" />
+    <Compile Include="Assets\Scripts\Character\EnermyFinder.cs" />
+    <Compile Include="Assets\Scripts\Weapon\SpecialWeapon.cs" />
+    <Compile Include="Assets\Scripts\Character\Player.cs" />
+    <Compile Include="Assets\Scripts\Boat\WaterBoat.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Bubble.cs" />
+    <Compile Include="Assets\Scripts\Controller\EnermyController.cs" />
+    <Compile Include="Assets\Scripts\Animation\AttackAnimation.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Knife.cs" />
+    <Compile Include="Assets\Scripts\Weapon\EnermyKnife.cs" />
+    <Compile Include="Assets\Scripts\FollowingCamera.cs" />
+    <Compile Include="Assets\Scripts\Controller\AnimationController.cs" />
+    <Compile Include="Assets\Scripts\Character\Enermy.cs" />
+    <Compile Include="Assets\Scripts\FSM\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\Character\Character.cs" />
+    <Compile Include="Assets\Scripts\Weapon\EnermyWeapon.cs" />
+    <Compile Include="Assets\Scripts\Controller\Controller.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\Animation\EnermyAttackAnimation.cs" />
+    <Compile Include="Assets\Scripts\Controller\BaseController.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
