@@ -37,8 +37,12 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.CompareTag("Boat"))
         {
-            var boat = other.gameObject.GetComponent<BoatMove>();
+            var boat = other.gameObject.GetComponent<Boat>();
+            _animator.SetTrigger("IsHit");
+            _rigidbody.linearVelocity = Vector2.zero;
             boat._hp -= _damage;
+            
+            Destroy(gameObject,0.2f);
         }
     }
 }

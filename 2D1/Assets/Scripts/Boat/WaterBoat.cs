@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WaterBoat : MonoBehaviour
 {
-    [SerializeField] private BoatMove _boat;
+    [SerializeField] private Boat _boat;
     [SerializeField] private Animator _animator;
 
     private void Update()
