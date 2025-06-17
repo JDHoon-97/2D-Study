@@ -2414,6 +2414,8 @@ MonoBehaviour:
   _moveSpeed: 1
   _hp: 10
   _animator: {fileID: 1570740256}
+  _rigidbody2D: {fileID: 0}
+  _isDestroyed: 0
 --- !u!95 &1570740256
 Animator:
   serializedVersion: 7
@@ -2577,7 +2579,7 @@ Transform:
   m_GameObject: {fileID: 1956672682}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.037, y: -0.472, z: 0.005081697}
+  m_LocalPosition: {x: 0.037000656, y: -0.47199994, z: 0.005081697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
