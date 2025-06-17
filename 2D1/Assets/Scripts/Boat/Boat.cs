@@ -24,12 +24,8 @@ public class Boat : MonoBehaviour
             _rigidbody2D.linearVelocity = new Vector2(-_moveSpeed, _rigidbody2D.linearVelocity.y);
         
     }
-    
     public void BoatDestroy()
     {
-        //TODO : hp가 -1이 되야지 떨어짐
-        //TODO : Boat Water가 계속 재생
-        
         _animator.SetTrigger("BoatDestroy");
         _moveSpeed = 0;
         //Destroy(gameObject, 5f);
